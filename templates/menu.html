@@ -1,0 +1,324 @@
+{% extends 'base.html' %}
+
+{% block title %}Menu - 2x2 Coffee{% endblock %}
+
+
+
+
+{% block content %}
+<!-- Store Selection Modal -->
+<div class="modal fade" id="storeSelectModal" tabindex="-1" aria-labelledby="storeSelectModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="storeSelectModalLabel">Choose Your Store</h5>
+      </div>
+      <div class="modal-body">
+        <select class="form-select" id="storeSelector">
+          <option selected disabled>Choose a nearby store...</option>
+          <option value="downtown">Downtown – 123 Main St</option>
+          <option value="campus">Campus – College Ave</option>
+          <option value="westside">Westside – 456 Elm St</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="confirmStore" data-bs-dismiss="modal">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="customizationPanel" aria-labelledby="customizationPanelLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="customizationPanelLabel">Customize Your Coffee: <span id="selectedDrink">...</span></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <form id="customize-form">
+            <div class="mb-3">
+                <label for="sugarCount" class="form-label">Sugar (sachets)</label>
+                <input type="number" class="form-control" id="sugarCount" min="0" max="5" value="1">
+            </div>
+            <div class="mb-3">
+                <label for="milkType" class="form-label">Milk Type</label>
+                <select class="form-select" id="milkType">
+                    <option value="whole">Whole Milk</option>
+                    <option value="skim">Skim Milk</option>
+                    <option value="almond">Almond Milk</option>
+                    <option value="oat">Oat Milk</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="syrupType" class="form-label">Syrup</label>
+                <select class="form-select" id="syrupType">
+                    <option value="none">None</option>
+                    <option value="vanilla">Vanilla</option>
+                    <option value="caramel">Caramel</option>
+                    <option value="hazelnut">Hazelnut</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-dark w-100">Order</button>
+        </form>
+    </div>
+</div>
+
+    <div class = "container-fluid">
+        <div class = "row">
+            <nav class = "col md-3 col-lg-2 d-md-block bg-light sidebar">
+                <div class = "p-3">
+                    <h5 class = "text-dark">Drinks</h5>
+                    <ul class = "nav flex-column">
+                        <li class = "nav-item"> <a class = "nav-link" href = "#hot-coffee">Hot Coffee</a></li>
+                        <li class = "nav-item"> <a class = "nav-link" href = "#cold-coffee">Cold Coffee</a></li>
+                        <li class = "nav-item"> <a class = "nav-link" href = "#cold-tea">Cold Tea</a></li>
+                        <li class = "nav-item"> <a class = "nav-link" href = "#hot-chocolate">Hot Chocolate</a></li>
+                        <li class = "nav-item"> <a class = "nav-link" href = "#bottled">Bottled Drinks</a></li>
+                    </ul>
+                    <h5 class = "text-dark">Food</h5>
+                    <ul class = "nav flex-column">
+                        <li class = "nav-item"> <a class = "nav-link" href = "#muffins">Muffins</a></li>
+                        <li class = "nav-item"> <a class = "nav-link" href = "#bagels">Bagels</a></li>
+                        <li class = "nav-item"> <a class = "nav-link" href = "#croissants">Croissants</a></li>
+                        <li class = "nav-item"> <a class = "nav-link" href = "#treats">Treats</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main class = "col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <section id="hot-coffee" class="my-5">
+                    <h2 class="mb-4">Hot Coffee</h2>
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+                        <div class="col text-center">
+                            <img src="{{ url_for('static', filename='menu/espresso.png') }}" class="menu-img mb-2" alt="Espresso" width="256" height="256" data-drink="Espresso">
+                            <h6>Espresso</h6>
+                        </div>
+                        <div class="col text-center">
+                            <img src="{{ url_for('static', filename='menu/macchiato.png') }}" class="menu-img mb-2" alt="Macchiato" width="256" height="256" data-drink="Macchiato">
+                            <h6>Espresso Macchiato</h6>
+                        </div>
+                        <div class="col text-center">
+                            <img src="{{ url_for('static', filename='menu/caramel_macchiato.png') }}" class="menu-img mb-2" alt="Caramel Macchiato" width="256" height="256" data-drink="Caramel Macchiato">
+                            <h6>Caramel Macchiato</h6>
+                        </div>
+                        <div class="col text-center">
+                            <img src="{{ url_for('static', filename='menu/mocha.png') }}" class="menu-img mb-2" alt="Mocha" width="256" height="256" data-drink="Mocha">
+                            <h6>Mocha</h6>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="cold-coffee" class="my-5">
+                    <h2 class="mb-4">Cold Coffee</h2>
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+                        <div class="col text-center">
+                            <img src="{{ url_for('static', filename='menu/cold-brew.png') }}" class="menu-img mb-2" alt="Cold Brew" width="256" height="256" data-drink="Cold Brew">
+                            <h6>Cold Brew</h6>
+                        </div>
+                        <div class="col text-center">
+                            <img src="{{ url_for('static', filename='menu/iced-espresso.png') }}" class="menu-img mb-2" alt="Iced Espresso" width="256" height="256" data-drink="Iced Espresso">
+                            <h6>Iced Espresso</h6>
+                        </div>
+                        <div class="col text-center">
+                            <img src="{{ url_for('static', filename='menu/iced-latte.png') }}" class="menu-img mb-2" alt="Iced Latte" width="256" height="256" data-drink="Iced Latte">
+                            <h6>Iced Latte</h6>
+                        </div>
+                        <div class="col text-center">
+                            <img src="{{ url_for('static', filename='menu/iced-mocha.png') }}" class="menu-img mb-2" alt="Iced Mocha" width="256" height="256" data-drink="Iced Mocha ">
+                            <h6>Iced Mocha</h6>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="iced-tea" class="my-5">
+                    <h2 class="mb-4">Iced Tea</h2>
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+                        <div class="col text-center">
+                            <img src="{{ url_for('static', filename='menu/iced-black.png') }}" class="menu-img mb-2" alt="Iced Black Tea" width="256" height="256" data-drink="Iced Black Tea">
+                            <h6>Iced Black Tea</h6>
+                        </div>
+                        <div class="col text-center">
+                            <img src="{{ url_for('static', filename='menu/iced-green.png') }}" class="menu-img mb-2" alt="Iced Green Tea" width="256" height="256" data-drink="Iced Green Tea">
+                            <h6>Iced Green Tea</h6>
+                        </div>
+                        <div class="col text-center">
+                            <img src="{{ url_for('static', filename='menu/iced-half.jpg') }}" class="menu-img mb-2" alt="Iced Half-Tea Half-Lemonade" width="256" height="256" data-drink="Iced Half-Tea Half-Lemonade">
+                            <h6>Half-Tea Half-Lemonade</h6>
+                        </div>
+                        <div class="col text-center">
+                            <img src="{{ url_for('static', filename='menu/iced-peach.jpeg') }}" class="menu-img mb-2" alt="Iced Peach Tea" width="256" height="256" data-drink="Iced Peach Tea">
+                            <h6>Iced Peach Tea</h6>
+                        </div>
+                    </div>
+                </section>
+
+         <section id="hot-chocolate" class="my-5">
+                    <h2 class="mb-4">Hot Chocolate</h2>
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+                        <div class="col text-center">
+                            <img src="{{ url_for('static', filename='menu/hot-chocolate.png') }}" class="menu-img mb-2" alt="Hot Chocolate" width="256" height="256" data-drink="Hot Chocolate">
+                            <h6>Hot Chocolate</h6>
+                        </div>
+                        <div class="col text-center">
+                            <img src="{{ url_for('static', filename='menu/white-chocolate.png') }}" class="menu-img mb-2" alt="White Chocolate" width="256" height="256 data-drink="Chocolate">
+                            <h6>White Hot Chocolate</h6>
+                        </div>
+                        <div class="col text-center">
+                            <img src="{{ url_for('static', filename='menu/vanilla-chocolate.png') }}" class="menu-img mb-2" alt="Vanilla Hot Chocolate" width="256" height="256" data-drink="Vanilla Hot Chocolate">
+                            <h6>Vanilla Hot Chocolate</h6>
+                        </div>
+                        <div class="col text-center">
+                            <img src="{{ url_for('static', filename='menu/caramel-chocolate.png') }}" class="menu-img mb-2" alt="Caramel Hot Chocolate" width="256" height="256" data-drink="Caramel Hot Chocolate">
+                            <h6>Caramel Hot Chocolate</h6>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="bottled" class="my-5">
+                    <h2 class="mb-4">Bottled Products</h2>
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+                        <div class="col text-center">
+                            <img src="{{ url_for('static', filename='menu/bottled-water.png') }}" class="menu-img mb-2" alt="Bottled Water" width="256" height="256" data-drink="Bottled Water">
+                            <h6>Bottled Water</h6>
+                        </div>
+                        <div class="col text-center">
+                            <img src="{{ url_for('static', filename='menu/sparkling-water.png') }}" class="menu-img mb-2" alt="Sparkling Water" width="256" height="256" data-drink="Sparkling Water">
+                            <h6>Sparkling Water</h6>
+                        </div>
+                        <div class="col text-center">
+                            <img src="{{ url_for('static', filename='menu/orange-juice.png') }}" class="menu-img mb-2" alt="Orange Juice" width="256" height="256" data-drink="Orange Juice">
+                            <h6>Orange Juice</h6>
+                        </div>
+                        <div class="col text-center">
+                            <img src="{{ url_for('static', filename='menu/apple-juice.png') }}" class="menu-img mb-2" alt="Apple Juice" width="256" height="256" data-drink="Aplle Juice">
+                            <h6>Apple Juice</h6>
+                        </div>
+                    </div>
+                </section>
+
+         <section id="muffins" class="my-5">
+                    <h2 class="mb-4">Iced Tea</h2>
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+                        <div class="col text-center">
+                            <img src="{{ url_for('static', filename='menu/chocolate-muffin.png') }}" class="menu-img mb-2" alt="Chocolate Muffin" width="256" height="256" data-drink="Chocolate Muffin">
+                            <h6>Chocolate Muffin</h6>
+                        </div>
+                        <div class="col text-center">
+                            <img src="{{ url_for('static', filename='menu/blueberry-muffin.png') }}" class="menu-img mb-2" alt="Blueberry Muffin" width="256" height="256" data-drink="Bluberry Muffin">
+                            <h6>Blueberry Muffin</h6>
+                        </div>
+                        <div class="col text-center">
+                            <img src="{{ url_for('static', filename='menu/banana-muffin.png') }}" class="menu-img mb-2" alt="Banana Muffin" width="256" height="256" data-drink="Banana Muffin">
+                            <h6>Banana Muffin</h6>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="bagels" class="my-5">
+                    <h2 class="mb-4">Iced Tea</h2>
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+                        <div class="col text-center">
+                            <img src="{{ url_for('static', filename='menu/chocolate-bagel.png') }}" class="menu-img mb-2" alt="Chocolate Bagel" width="256" height="256" data-drink="Chocolate Bagel">
+                            <h6>Iced Black Tea</h6>
+                        </div>
+                        <div class="col text-center">
+                            <img src="{{ url_for('static', filename='menu/white-glaze.png') }}" class="menu-img mb-2" alt="White Glaze Bagel" width="256" height="256" data-drink="Wiite Glaze Bagel">
+                            <h6>White Glaze Bagel</h6>
+                        </div>
+                        <div class="col text-center">   
+                            <img src="{{ url_for('static', filename='menu/caramel-bagel.png') }}" class="menu-img mb-2" alt="Caramel Bagel" width="256" height="256" data-drink="Caramel Bagel">
+                            <h6>Caramel Bagel</h6>
+                        </div>
+                    </div>
+                </section>
+
+                <section id = "croissants" class = "my-5">
+                    <h2 class="mb-4">Croissant</h2>
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+                        <div class="col text-center">
+                            <img src="{{ url_for('static', filename='menu/ham-cheese.png') }}" class="menu-img mb-2" alt="Ham and Cheese Croissant" width="256" height="256" data-drink="Ham and Cheese Croissant">
+                            <h6>Croissant with Ham and Chese</h6>
+                        </div>
+                        <div class="col text-center">
+                            <img src="{{ url_for('static', filename='menu/chocolate-croissant.png') }}" class="menu-img mb-2" alt="Chocolate Croissant" width="256" height="256" data-drink="Chocolate Croissant">
+                            <h6>Chocolate Croissant</h6>
+                        </div>
+                        <div class="col text-center">
+                            <img src="{{ url_for('static', filename='menu/berry-jame.png') }}" class="menu-img mb-2" alt="Berry Jam Croissant" width="256" height="256" data-drink="Berry Jam Croissant">
+                            <h6>Berry Jam Croissant</h6>
+                        </div>
+                </section>
+
+                <section id = "treats" class = "my-5">
+                    <h2 class="mb-4">Treats</h2>
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+                        <div class="col text-center">
+                            <img src="{{ url_for('static', filename='menu/chocolate-bombs.png') }}" class="menu-img mb-2" alt="Chocolate Bombs" width="256" height="256" data-drink="Chocolate Bombs">
+                            <h6>Chocolate Bombs</h6>
+                        </div>
+                        <div class="col text-center">
+                            <img src="{{ url_for('static', filename='menu/chip-cookie.png') }}" class="menu-img mb-2" alt="Chocolate Chip Cookie" width="256" height="256" data-drink="Chocolate Chip Cookie">
+                            <h6>Chocolate Croissant</h6>
+                        </div>
+                </section>
+            </main>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+    let selectedStore = null;
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const storeModal = new bootstrap.Modal(document.getElementById('storeSelectModal'));
+
+        // Show modal on page load if no store is selected
+        if (!selectedStore) {
+            storeModal.show();
+        }
+
+        // Confirm store selection
+        document.getElementById('confirmStore').addEventListener('click', () => {
+            const selector = document.getElementById('storeSelector');
+            const store = selector.value;
+
+            if (store && store !== "Choose a nearby store...") {
+                selectedStore = store;
+            } else {
+                alert("Please select a valid store.");
+                storeModal.show(); // Re-show if no valid option
+            }
+        });
+
+        // Handle drink image click
+        document.querySelectorAll('.menu-img').forEach(img => {
+            img.addEventListener('click', function () {
+                if (!selectedStore) {
+                    storeModal.show();
+                    return;
+                }
+
+                const drink = img.getAttribute('data-drink');
+                document.getElementById('selectedDrink').textContent = drink;
+
+                const panel = new bootstrap.Offcanvas('#customizationPanel');
+                panel.show();
+            });
+        });
+
+        // Form submission
+        document.getElementById('customize-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const sugar = document.getElementById('sugarCount').value;
+            const milk = document.getElementById('milkType').value;
+            const syrup = document.getElementById('syrupType').value;
+            const drink = document.getElementById('selectedDrink').textContent;
+
+            alert(`Order Placed!\nStore: ${selectedStore}\nDrink: ${drink}\nSugar: ${sugar}\nMilk: ${milk}\nSyrup: ${syrup}`);
+            bootstrap.Offcanvas.getInstance(document.getElementById('customizationPanel')).hide();
+        });
+    });
+</script>
+{% endblock %}

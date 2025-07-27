@@ -1,0 +1,118 @@
+<!-- templates/index.html -->
+{% extends 'base.html' %}
+
+{% block title %}Welcome - 2x2 Coffee{% endblock %}
+
+{% block content %}
+<section>
+ <div id="welcomeCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+  <div class="carousel-inner">
+
+    <div class="carousel-item active text-center bg-light py-5">
+      <div class="container">
+        <h1 class="display-4 mb-3">Explore Our Coffee Menu</h1>
+        <p class="lead">Curated drinks tailored for energy, focus, and flavor.</p>
+        <a href="/menu" class="btn btn-dark btn-lg">View Menu</a>
+      </div>
+    </div>
+
+    <div class="carousel-item text-center bg-light py-5">
+      <div class="container">
+        <h1 class="display-4 mb-3">Get Your Perfect Brew</h1>
+        <p class="lead">Let our algorithm match your day with the right cup.</p>
+        <a href="/recommend" class="btn btn-primary btn-lg">Get My Coffee</a>
+      </div>
+    </div>
+
+        <div class="carousel-item text-center bg-light py-5">
+        <div class="container">
+            <h1 class="display-4 mb-3">Learn About 2x2 Coffee</h1>
+            <p class="lead">We blend science and coffee to help students thrive.</p>
+            <a href="/about" class="btn btn-outline-dark btn-lg">Read More</a>
+        </div>
+        </div>
+
+  </div>
+
+  <!-- Carousel Controls -->
+<button class="carousel-control-prev" type="button" data-bs-target="#welcomeCarousel" data-bs-slide="prev">
+  <i class="bi bi-arrow-left-circle-fill fs-2 text-white"></i>
+</button>
+<button class="carousel-control-next" type="button" data-bs-target="#welcomeCarousel" data-bs-slide="next">
+  <i class="bi bi-arrow-right-circle-fill fs-2 text-white"></i>
+</button>
+</div>
+
+
+</section>
+
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center mb-5">Choose Your Roast Level</h2>
+
+    <div class="row text-center">
+      <!-- Light Roast -->
+      <div class="col-md-4 mb-4">
+        <img src="{{ url_for('static', filename='image/roast.png') }}" class="rounded-circle roast-img w-25 mb-3" alt="Light Roast">
+        <h4>Light Roast</h4>
+        <p>Bright and vibrant. High energy and clarity.</p>
+        <button class="btn btn-outline-dark" data-bs-toggle="collapse" data-bs-target="#lightInfo">Learn More</button>
+        <div class="collapse mt-3" id="lightInfo">
+          <div class="card card-body  ">
+            <img src="{{ url_for('static', filename='image/beans_background.jpg') }}" class="img-fluid rounded w-100 h-100" style = "object-fit: cover; position: absolute; top: 0; left: 0;" alt="Light Roast Details">
+            <div class="position-relative p-4">
+            <h5>Light Roast Beans</h5>
+            <p>
+              Light roast beans preserve more caffeine and have citrusy, floral flavors.
+              Best for early mornings and mental sharpness.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <!-- Medium Roast -->
+      <div class="col-md-4 mb-4">
+        <img src="{{ url_for('static', filename='image/roast2.png') }}" class="rounded-circle roast-img w-25 mb-3" alt="Medium Roast">
+        <h4>Medium Roast</h4>
+        <p>Balanced and rich. Perfect daily brew.</p>
+        <button class="btn btn-outline-dark" data-bs-toggle="collapse" data-bs-target="#mediumInfo">Learn More</button>
+        <div class="collapse mt-3" id="mediumInfo">
+          <div class="card card-body">
+            <img src="{{ url_for('static', filename='image/beans_background.jpg') }}" class="img-fluid rounded w-100 h-100" style = "object-fit: cover; position: absolute; top: 0; left: 0;"  alt="Medium Roast Details">
+            <div class="position-relative p-4">
+            <h5>Light Roast Beans</h5>
+            <p>
+              Medium roast is smooth, with well-rounded flavor and aroma. Ideal for sustained study or 
+              work sessions.
+            </p>
+          </div>
+        </div>
+      </div>       
+    </div>
+
+
+      <!-- Dark Roast -->
+      <div class="col-md-4 mb-4">
+        <img src="{{ url_for('static', filename='image/roast3.png') }}" class="rounded-circle roast-img w-25 mb-3" alt="Dark Roast">
+        <h4>Dark Roast</h4>
+        <p>Bold and intense. Late night warrior fuel.</p>
+        <button class="btn btn-outline-dark" data-bs-toggle="collapse" data-bs-target="#darkInfo">Learn More</button>
+        <div class="collapse mt-3" id="darkInfo">
+          <div class="card card-body">
+            <img src="{{ url_for('static', filename='image/beans_background.jpg') }}" class="img-fluid rounded w-100 h-100" style = "object-fit: cover; position: absolute; top: 0; left: 0;" alt="Dark Roast Details">
+            <div class="position-relative p-4">
+            <h5>Light Roast Beans</h5>
+            <p>
+              Dark roast brings a deep, smoky flavor and lower acidity. Great for late-night 
+              cramming or serious energy boosts.
+            </p>
+          </div>
+        </div>
+      </div>       
+    </div>
+
+</section>
+     
+{% endblock %}
+

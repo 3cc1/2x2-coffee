@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block title %}Get Coffee {% endblock %}
+
+
+{% block content %}
+<!-- templates/index.html -->
+ <h1 class = "text-center mt-5 mb-4">Welcome to 2x2 Coffee</h1>
+
+<style>
+
+
+    form{
+        background-color: #f7f7f7;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    label {
+        display: block;
+        margin: 15px 0 5px;
+        font-weight: 500;
+    }
+    input, select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 4px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-sizing: border-box;
+    }
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #4A2C2A;
+        color: white;
+        padding: 12px;
+        font-size: 16px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    button:hover {
+        background-color: #6B4A4A;
+    }
+    #result {
+        margin-top: 30px;
+        background-color: #e8dfd8;
+        padding: 20px;
+        border-radius: 10px;
+        border-left: 5px solid #4A2C2A;
+    }
+    #result h3 {
+        text-align: left;
+        margin-top: 0px;
+        background-color: #e8dfd8;
+        padding: 20px;
+        border-left: 5px solid #4A2C2A;
+        max-width: 600px;
+
+    }
+</style>
+
+
+    <form id = "coffee-form">
+        <label> Age: <input type="number" name="age" required></label><br>
+        <label>Weight (kg): <input type = "number" name="weight" required></label><br>
+        <label>Sleep hours per night: <input type = "number" name ="sleep_hours" required></label><br>
+        <label> Study hours per day: <input type = "number" name="study_hours" required></label><br>
+        <label> Caffeine tolerance:
+            <select name = "caffeine_tolerance" required>
+                <option value = "low">Low</option>
+                <option value = "medium">Medium</option>
+                <option value = "high">High</option>
+            </select>
+        </label><br><br>
+        <button type = "submit"> Get my Coffee!</button>
+    </form>
+
+    <div class = "container page-container py-5" id="result" style = "margin-top: 20px;"></div>
+
+    <script> 
+        document.getElementById("coffee-form").addEventListener("submit", async function(e){
+            e.preventDefault();
+
+            const form = e.target;
+            const data = {
+                age:parseInt(form.age.value),
+                weight: parseFloat(form.weight.value), 
+                sleep_hours: parseFloat(form.sleep_hours.value),
+                study_hours: parseFloat(form.study_hours.value),
+                caffeine_tolerance: form.caffeine_tolerance.value
+            };
+
+            const response = await fetch('/recommend', {
+                method: 'POST', 
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+            const result = await response.json();
+
+            document.getElementById('result').innerHTML = `
+                <h3 style = "text-align: left;">Your Recommendation:</h3>
+                <p><strong>Size:</strong> ${result.recommended_size}</p>
+                <p><strong>Espresso Shots:</strong> ${result.espresso_shots}</p>
+                <p><strong>Sugar Level:</strong> ${result.sugar_level}</p>
+                <p><strong>Approx. Caffeine (mg):</strong> ${result.caffeine_mg}</p>
+            `; 
+            
+        });
+    </script>
+
+
+{% endblock %}

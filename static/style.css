@@ -1,0 +1,58 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 160px;
+    background: #4A2C2A;
+    padding: 20px;
+}
+.sidebar li {
+    list-style: none;
+    margin: 10px 0;
+}
+.sidebar a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+ .page-container {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+body {
+    background-color: #fefefe;
+    color: #333;
+}
+
+header {
+    background-color: #343a40;
+    color: white;
+}
+
+.navbar a, 
+.nav a{
+    color: white; 
+}
+
+.navbar a:hover,
+.nav a:hover {
+    color: #ffc107;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #4A2C2A;
+    border-radius: 50%;
+    background-size: 100% 100%;
+    padding: 20px;
+}
+
+.modal-content {
+    border-radius: 10px;
+}

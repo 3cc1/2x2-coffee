@@ -1,0 +1,42 @@
+/* Header container */
+header {
+    background-color: #4A2C2A; /* Deep coffee tone */
+    color: #fff;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+/* Nav links in header */
+header .nav-link {
+    color: #ffffff;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+header .nav-link:hover {
+    color: #d1bfa7;
+}
+
+/* Brand name styling */
+header .fs-4 {
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Login & Signup buttons */
+header .btn-outline-light:hover {
+    background-color: #ffffff;
+    color: #4A2C2A;
+    border-color: #ffffff;
+}
+
+header .btn-warning {
+    background-color: #d9a25f;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+header .btn-warning:hover {
+    background-color: #c4873a;
+    color: #fff;    
+}

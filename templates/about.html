@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}About Us - 2x2 Coffee{% endblock %}
+
+{% block content %}
+<div class="py-5">
+    <div class="container page-container py-5">
+        <h1 class="mb-4 text-center">About 2x2 Coffee</h1>
+        
+        <div class="row align-items-center">
+            <div class="col-md-6 mb-4 mb-md-0">
+                <img src="{{ url_for('static', filename='image/about.jpg') }}" class="img-fluid rounded shadow" alt="About 2x2 Coffee">
+            </div>
+            <div class="col-md-6">
+                <p class="lead">
+                    At <strong>2x2 Coffee</strong>, we believe your coffee should match your lifestyle. Whether you're pulling all-nighters, working out, or just need that perfect morning boost, our personalized coffee engine is designed to make your day sharper and your brew smarter.
+                </p>
+                <p>
+                    Founded on a college campus, we’re passionate about helping students and professionals stay energized the healthy way. Our app uses science-backed logic and smart personalization to recommend the best blend for your body, schedule, and caffeine needs.
+                </p>
+                <p>
+                    <strong>Come for the coffee. Stay for the clarity.</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
